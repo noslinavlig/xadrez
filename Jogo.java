@@ -19,11 +19,26 @@ public class Jogo {
      * Utilizado na inicializa�ao do jogo.
      */
     private void criarPecas() {
-        Casa casa1 = tabuleiro.getCasa(0, 0);
-        Peca peca1 = new Peca(casa1, Peca.PEDRA_BRANCA);
+        //Adicionar peões brancos no tabuleiro
+        for (int i = 0; i < 8; i++) {
+            Casa casai = tabuleiro.getCasa(i, 1);
+            Peca pecai = new Peca(casai, Peca.PEAO_BRANCO);
+        }
 
-        Casa casa2 = tabuleiro.getCasa(7, 7);
-        Peca peca2 = new Peca(casa2, Peca.DAMA_VERMELHA);
+        //Adicionar peões pretos no tabuleiro
+        for (int j = 0; j < 8; j++) {
+        int i = j + 8;
+        Casa casai = tabuleiro.getCasa(j, 6);
+        Peca pecai = new Peca(casai, Peca.PEAO_PRETO);
+
+        //Adicionar os reis ao tabuleiro 
+        var casa16 = tabuleiro.getCasa(4, 0);
+        Peca peca16 = new Peca(casa16, Peca.REI_BRANCO);
+        Casa casa17 = tabuleiro.getCasa(4, 7);
+        Peca peca17 = new Peca(casa17, Peca.REI_PRETO);
+
+        }
+
     }
     
     /**

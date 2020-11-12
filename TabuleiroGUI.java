@@ -82,6 +82,20 @@ public class TabuleiroGUI extends JPanel {
                     Peca peca = casa.getPeca();
 
                     switch (peca.getTipo()) {
+                        //xadrez
+                        case Peca.PEAO_BRANCO:
+                            casaGUI.desenharPeaoBranco();
+                            break;
+                        case Peca.PEAO_PRETO:
+                            casaGUI.desenharPeaoPreto();
+                            break;
+                        case Peca.REI_BRANCO:
+                            casaGUI.desenharReiBranco();
+                            break;
+                        case Peca.REI_PRETO:
+                            casaGUI.desenharReiPreto();
+                            break;
+                        //damas
                         case Peca.PEDRA_BRANCA:
                             casaGUI.desenharPedraBranca();
                             break;

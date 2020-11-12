@@ -21,7 +21,13 @@ public class CasaGUI extends JButton {
     public static final Color COR_ESCURA = new Color(65, 41, 1);
     private static final Color COR_DESTAQUE = new Color(0, 1, 0, 0.4f);
     
-    // Icones das pecas
+    // Icones das pecas: atribuindo objetos .png às peças
+    //xadrez
+    private static final Icon PEAO_BRANCO = new ImageIcon("imagens/peao_branco.png");
+    private static final Icon PEAO_PRETO = new ImageIcon("imagens/peao_preto.png");
+    private static final Icon REI_BRANCO = new ImageIcon("imagens/rei_branco.png");
+    private static final Icon REI_PRETO = new ImageIcon("imagens/rei_preto.png");
+    //damas
     private static final Icon PEDRA_BRANCA = new ImageIcon("imagens/pedra_branca.png");
     private static final Icon DAMA_BRANCA = new ImageIcon("imagens/dama_branca.png");
     private static final Icon PEDRA_VERMELHA = new ImageIcon("imagens/pedra_vermelha.png");
@@ -65,6 +71,23 @@ public class CasaGUI extends JButton {
         return y;
     }
 
+    //Metodos para desenhar as peças, utilizando os objetos da classe Icon?
+    public void desenharPeaoBranco() {
+        setIcon(PEAO_BRANCO);
+    }
+    
+    public void desenharPeaoPreto()  {
+        setIcon(PEAO_PRETO);
+    }
+    
+    public void desenharReiBranco()  {
+        setIcon(REI_BRANCO);
+    }
+    
+    public void desenharReiPreto()  {
+        setIcon(REI_PRETO);
+    }
+    //Desenhar pecas damas
     public void desenharPedraBranca() {
         setIcon(PEDRA_BRANCA);
     }

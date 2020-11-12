@@ -8,10 +8,22 @@
  */
 public class Peca {
 
+    //Inteiros identificadores das pecas
+    //damas
     public static final int PEDRA_BRANCA = 0;
     public static final int DAMA_BRANCA = 1;
     public static final int PEDRA_VERMELHA = 2;
     public static final int DAMA_VERMELHA = 3;
+    //xadrez
+    public static final int PEAO_BRANCO = 4;
+    public static final int PEAO_PRETO = 5;
+
+    /*
+    * Torre, Cavalo, Bispo, Rainha nessa ordem
+    */
+    
+    public static final int REI_BRANCO = 14;
+    public static final int REI_PRETO = 15;
 
     private Casa casa;
     private int tipo;
