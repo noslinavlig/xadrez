@@ -30,12 +30,20 @@ public class Jogo {
         int i = j + 8;
         Casa casai = tabuleiro.getCasa(j, 6);
         Peca pecai = new Peca(casai, Peca.PEAO_PRETO);
+        
+        //Adicionar as rainhas ao tabuleiro 
+        var casa14 = tabuleiro.getCasa(3, 0);
+        Peca peca14 = new Peca(casa14, Peca.RAINHA_BRANCA);
+        Casa casa15 = tabuleiro.getCasa(3, 7);
+        Peca peca15 = new Peca(casa15, Peca.RAINHA_PRETA);
 
         //Adicionar os reis ao tabuleiro 
         var casa16 = tabuleiro.getCasa(4, 0);
         Peca peca16 = new Peca(casa16, Peca.REI_BRANCO);
         Casa casa17 = tabuleiro.getCasa(4, 7);
         Peca peca17 = new Peca(casa17, Peca.REI_PRETO);
+        
+        
 
         }
 

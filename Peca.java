@@ -21,9 +21,13 @@ public class Peca {
     /*
     * Torre, Cavalo, Bispo, Rainha nessa ordem
     */
-    
+    public static final int RAINHA_BRANCA = 12;
+    public static final int RAINHA_PRETA = 13;
+   
     public static final int REI_BRANCO = 14;
     public static final int REI_PRETO = 15;
+    
+  
 
     private Casa casa;
     private int tipo;
