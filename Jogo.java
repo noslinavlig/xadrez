@@ -42,8 +42,16 @@ public class Jogo {
         Peca peca16 = new Peca(casa16, Peca.REI_BRANCO);
         Casa casa17 = tabuleiro.getCasa(4, 7);
         Peca peca17 = new Peca(casa17, Peca.REI_PRETO);
-        
-        
+            
+        //Adicionar os cavalor ao tabuleiro
+        Casa casa17 = tabuleiro.getCasa(1,0);
+        Peca peca17 = new Peca(casa17, Peca.CAVALO_BRANCO);
+        Casa casa18 = tabuleiro.getCasa(6,0);
+        Peca peca18 = new Peca(casa18, Peca.CAVALO_BRANCO);
+        Casa casa19 = tabuleiro.getCasa(1,7);
+        Peca peca19 = new Peca(casa19, Peca.CAVALO_PRETO);
+        Casa casa20 = tabuleiro.getCasa(6,7);
+        Peca peca20 = new Peca(casa20, Peca.CAVALO_PRETO);
 
         }
 
