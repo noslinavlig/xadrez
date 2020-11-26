@@ -29,6 +29,8 @@ public class CasaGUI extends JButton {
     private static final Icon REI_PRETO = new ImageIcon("imagens/rei_preto.png");
     private static final Icon RAINHA_BRANCA = new ImageIcon("imagens/rainha_branca.png");
     private static final Icon RAINHA_PRETA = new ImageIcon("imagens/rainha_preta.png");
+    private static final Icon CAVALO_BRANCO = new ImageIcon("imagens/cavalo_branco.png");
+    private static final Icon CAVALO_PRETO = new ImageIcon("imagens/cavalo_preto.png");
     
     //damas
     private static final Icon PEDRA_BRANCA = new ImageIcon("imagens/pedra_branca.png");
@@ -98,6 +100,15 @@ public class CasaGUI extends JButton {
     public void desenharRainhaPreta() {
         setIcon(RAINHA_PRETA);
     }
+ 
+    public void desenharCavaloBranco() {
+        setIcon(CAVALO_BRANCO);
+    }
+    
+    public void desenharCavaloPreto() {
+        setIcon(CAVALO_PRETO);
+    }
+ 
     //Desenhar pecas damas
     public void desenharPedraBranca() {
         setIcon(PEDRA_BRANCA);
