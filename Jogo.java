@@ -30,20 +30,21 @@ public class Jogo {
         int i = j + 8;
         Casa casai = tabuleiro.getCasa(j, 6);
         Peca pecai = new Peca(casai, Peca.PEAO_PRETO);
-        
-        //Adicionar as rainhas ao tabuleiro 
-        var casa14 = tabuleiro.getCasa(3, 0);
-        Peca peca14 = new Peca(casa14, Peca.RAINHA_BRANCA);
-        Casa casa15 = tabuleiro.getCasa(3, 7);
-        Peca peca15 = new Peca(casa15, Peca.RAINHA_PRETA);
 
         //Adicionar os reis ao tabuleiro 
-        var casa16 = tabuleiro.getCasa(4, 0);
+        Casa casa16 = tabuleiro.getCasa(4, 0);
         Peca peca16 = new Peca(casa16, Peca.REI_BRANCO);
         Casa casa17 = tabuleiro.getCasa(4, 7);
         Peca peca17 = new Peca(casa17, Peca.REI_PRETO);
+
+        //Adicionar as rainhas ao tabuleiro 
+        Casa casa18 = tabuleiro.getCasa(3, 0);
+        Peca peca18 = new Peca(casa18, Peca.RAINHA_BRANCA);
+        Casa casa19 = tabuleiro.getCasa(3, 7);
+        Peca peca19 = new Peca(casa19, Peca.RAINHA_PRETA);
             
         //Adicionar os cavalos ao tabuleiro
+<<<<<<< Updated upstream
         Casa casa18 = tabuleiro.getCasa(1,0);
         Peca peca18 = new Peca(casa18, Peca.CAVALO_BRANCO);
         Casa casa19 = tabuleiro.getCasa(6,0);
@@ -62,6 +63,16 @@ public class Jogo {
         Peca peca24 = new Peca(casa24, Peca.TORRE_PRETA);
         Casa casa25 = tabuleiro.getCasa(7,7);
         Peca peca25 = new Peca(casa25, Peca.TORRE_PRETA);
+=======
+        Casa casa20 = tabuleiro.getCasa(1,0);
+        Peca peca20 = new Peca(casa20, Peca.CAVALO_BRANCO);
+        Casa casa21 = tabuleiro.getCasa(6,0);
+        Peca peca21 = new Peca(casa21, Peca.CAVALO_BRANCO);
+        Casa casa22 = tabuleiro.getCasa(1,7);
+        Peca peca22 = new Peca(casa22, Peca.CAVALO_PRETO);
+        Casa casa23 = tabuleiro.getCasa(6,7);
+        Peca peca23 = new Peca(casa23, Peca.CAVALO_PRETO);
+>>>>>>> Stashed changes
 
         }
 
@@ -80,7 +91,7 @@ public class Jogo {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
-        peca.mover(destino);
+        peca.mover(destino);        
     }
     
     /**
