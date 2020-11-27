@@ -80,9 +80,16 @@ public class Jogo {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
+        if(peca.getTipo() == 6 || peca.getTipo() == 7){
+            if(origemX == destinoX || origemY == destinoY){
         peca.mover(destino);
+        }
+        }else{
+        
+            peca.mover(destino);
+  
+        }
     }
-    
     /**
      * @return o Tabuleiro em jogo.
      */
