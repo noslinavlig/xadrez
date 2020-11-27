@@ -101,19 +101,16 @@ public class TabuleiroGUI extends JPanel {
                         case Peca.RAINHA_PRETA:
                             casaGUI.desenharRainhaPreta();
                             break;
-<<<<<<< Updated upstream
                         case Peca.TORRE_BRANCA:
                             casaGUI.desenharTorreBranca();
                             break;
                         case Peca.TORRE_PRETA:
                             casaGUI.desenharTorrePreta();
-=======
                         case Peca.CAVALO_BRANCO:
                             casaGUI.desenharCavaloBranco();
                             break;
                         case Peca.CAVALO_PRETO:
                             casaGUI.desenharCavaloPreto();
->>>>>>> Stashed changes
                             break;
                             
                         //damas
