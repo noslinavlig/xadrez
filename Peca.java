@@ -17,23 +17,18 @@ public class Peca {
     //xadrez
     public static final int PEAO_BRANCO = 4;
     public static final int PEAO_PRETO = 5;
-    
     public static final int TORRE_BRANCA = 6;
     public static final int TORRE_PRETA = 7;
-    
     public static final int CAVALO_BRANCO = 8;
     public static final int CAVALO_PRETO = 9;
     /*
-    * Torre, Cavalo, Bispo, Rainha nessa ordem
+    * Bispo aqui
     */
     public static final int RAINHA_BRANCA = 12;
     public static final int RAINHA_PRETA = 13;
-   
     public static final int REI_BRANCO = 14;
     public static final int REI_PRETO = 15;
     
-  
-
     private Casa casa;
     private int tipo;
 

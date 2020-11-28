@@ -107,6 +107,12 @@ public class TabuleiroGUI extends JPanel {
                         case Peca.TORRE_PRETA:
                             casaGUI.desenharTorrePreta();
                             break;
+                        case Peca.CAVALO_BRANCO:
+                            casaGUI.desenharCavaloBranco();
+                            break;
+                        case Peca.CAVALO_PRETO:
+                            casaGUI.desenharCavaloPreto();
+                            break;
                             
                         //damas
                         case Peca.PEDRA_BRANCA:
