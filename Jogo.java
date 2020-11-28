@@ -80,15 +80,38 @@ public class Jogo {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
-        if(peca.getTipo() == || peca.getTipo() == 5){
-            if(origemX == destinoX || origemY == destinoY){
-        peca.mover(destino);
-        }
-        }/*else{
-        
-            peca.mover(destino);
-  
-        }*/
+        switch(Math.abs(peca.getTipo())){
+            case 3:
+                
+            
+            // se for primeira jogada
+              if(origemY == 1) 
+                  //restringindo o primeiro movimento restringindo a diagonal
+                if(destinoY <= origemY + 2 && destinoY > 0 && origemX == destinoX)
+                    peca.mover(destino);
+                
+               else if (destinoY == origemY + 1 && origemX == destinoX) 
+                  peca.mover(destino);
+              
+              break;
+            case 4:
+                if(destinoX == origemX || destinoY == origemY)
+                    peca.mover(destino);
+                break;
+            case 5:
+                if(Math.abs(destinoY - origemY) + Math.abs(destinoX - origemX) == 3 && origemX != destinoX && origemY != destinoY)
+                    peca.mover(destino);
+                break;
+            case 7:
+                if((Math.abs(destinoX - origemX) == Math.abs(destinoY - origemY)) ||
+                    destinoX == origemX || destinoY == origemY)
+                    peca.mover(destino);
+                break;
+            case 8:
+                if(Math.abs(destinoY - origemY) + Math.abs(destinoX - origemX) == 1 || Math.abs(destinoY - origemY) == 1 && Math.abs(destinoX - origemX) == 1)
+                    peca.mover(destino);
+                break;
+        }    
     }
     /**
      * @return o Tabuleiro em jogo.
