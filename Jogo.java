@@ -85,11 +85,11 @@ public class Jogo {
                 
             
             // se for primeira jogada
-              if(origemY == 1) 
+              if(origemY == 1){ 
                   //restringindo o primeiro movimento restringindo a diagonal
                 if(destinoY <= origemY + 2 && destinoY > 0 && origemX == destinoX)
                     peca.mover(destino);
-                
+                } 
                else if (destinoY == origemY + 1 && origemX == destinoX) 
                   peca.mover(destino);
               
