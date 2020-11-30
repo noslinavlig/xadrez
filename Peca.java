@@ -48,6 +48,23 @@ public class Peca {
         casa = destino;
     }
 
+    //METODO NOVO TESTA MOVIMENTAÇÃO INDICADA
+    public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy){
+        switch(Math.abs(this.getTipo())){
+            case 3:
+                if(Py == 1)
+                    if(Qy - Py <= 2 && Px == Qx){
+                        return true;
+                    } else 
+                        return false;
+                if(Qy - Py < 2 && Px == Qx)
+                    return true;
+                else return false;
+            default:
+                return false;
+            }
+    }
+
     /**
      * Valor    Tipo
      *   0   Branca (Pedra)

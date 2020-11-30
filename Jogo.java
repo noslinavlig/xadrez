@@ -8,10 +8,12 @@
 public class Jogo {
 
     private Tabuleiro tabuleiro;
+    private int jogada;
 
     public Jogo() {
         tabuleiro = new Tabuleiro();
         criarPecas();
+        this.jogada = 0;
     }
     
     /**
@@ -68,50 +70,62 @@ public class Jogo {
     }
     
     /**
-     * Comanda uma Pe�a na posicao (origemX, origemY) fazer um movimento 
-     * para (destinoX, destinoY).
+     * Comanda uma Pe�a na posicao (x.getPosicaoX(), x.getPosicaoY()) fazer um movimento 
+     * para (y.getPosicaoX(), y.getPosicaoY()).
      * 
-     * @param origemX linha da Casa de origem.
-     * @param origemY coluna da Casa de origem.
-     * @param destinoX linha da Casa de destino.
-     * @param destinoY coluna da Casa de destino.
+     * @param x.getPosicaoX() linha da Casa de origem.
+     * @param x.getPosicaoY() coluna da Casa de origem.
+     * @param y.getPosicaoX() linha da Casa de destino.
+     * @param y.getPosicaoY() coluna da Casa de destino.
      */
-    public void moverPeca(int origemX, int origemY, int destinoX, int destinoY) {
-        Casa origem = tabuleiro.getCasa(origemX, origemY);
-        Casa destino = tabuleiro.getCasa(destinoX, destinoY);
+
+     //METODO NOVO SUBSTITUI moverPeca()
+    public void fazerJogada(CasaGUI P, CasaGUI Q) {
+        Casa origem = tabuleiro.getCasa(P.getPosicaoX(), P.getPosicaoY());
+        Casa destino = tabuleiro.getCasa(Q.getPosicaoX(), Q.getPosicaoY());
         Peca peca = origem.getPeca();
+        if (this.jogada %2 ==0 && peca.getTipo() > 0){
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY())){
+                peca.mover(destino);
+                this.jogada++;
+            }
+        } else if (this.jogada %2 != 0 && peca.getTipo() < 0){
+            peca.mover(destino);
+            this.jogada++;
+        }
+        /*
         switch(Math.abs(peca.getTipo())){
             case 3:
                 
             
             // se for primeira jogada
-              if(origemY == 1){ 
+              if(x.getPosicaoY() == 1){ 
                   //restringindo o primeiro movimento restringindo a diagonal
-                if(destinoY <= origemY + 2 && destinoY > 0 && origemX == destinoX)
+                if(y.getPosicaoY() <= x.getPosicaoY() + 2 && y.getPosicaoY() > 0 && x.getPosicaoX() == y.getPosicaoX())
                     peca.mover(destino);
                 } 
-               else if (destinoY == origemY + 1 && origemX == destinoX) 
+               else if (y.getPosicaoY() == x.getPosicaoY() + 1 && x.getPosicaoX() == y.getPosicaoX())
                   peca.mover(destino);
               
               break;
             case 4:
-                if(destinoX == origemX || destinoY == origemY)
+                if(y.getPosicaoX() == x.getPosicaoX() || y.getPosicaoY() == x.getPosicaoY())
                     peca.mover(destino);
                 break;
             case 5:
-                if(Math.abs(destinoY - origemY) + Math.abs(destinoX - origemX) == 3 && origemX != destinoX && origemY != destinoY)
+                if(Math.abs(y.getPosicaoY() - x.getPosicaoY()) + Math.abs(y.getPosicaoX() - x.getPosicaoX()) == 3 && x.getPosicaoX() != y.getPosicaoX() && x.getPosicaoY() != y.getPosicaoY())
                     peca.mover(destino);
                 break;
             case 7:
-                if((Math.abs(destinoX - origemX) == Math.abs(destinoY - origemY)) ||
-                    destinoX == origemX || destinoY == origemY)
+                if((Math.abs(y.getPosicaoX() - x.getPosicaoX()) == Math.abs(y.getPosicaoY() - x.getPosicaoY())) ||
+                    y.getPosicaoX() == x.getPosicaoX() || y.getPosicaoY() == x.getPosicaoY())
                     peca.mover(destino);
                 break;
             case 8:
-                if(Math.abs(destinoY - origemY) + Math.abs(destinoX - origemX) == 1 || Math.abs(destinoY - origemY) == 1 && Math.abs(destinoX - origemX) == 1)
+                if(Math.abs(y.getPosicaoY() - x.getPosicaoY()) + Math.abs(y.getPosicaoX() - x.getPosicaoX()) == 1 || Math.abs(y.getPosicaoY() - x.getPosicaoY()) == 1 && Math.abs(y.getPosicaoX() - x.getPosicaoX()) == 1)
                     peca.mover(destino);
                 break;
-        }    
+        }*/    
     }
     /**
      * @return o Tabuleiro em jogo.
