@@ -90,8 +90,10 @@ public class Jogo {
                 this.jogada++;
             }
         } else if (this.jogada %2 != 0 && peca.getTipo() < 0){
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY())){
             peca.mover(destino);
             this.jogada++;
+        }
         }
         /*
         switch(Math.abs(peca.getTipo())){
