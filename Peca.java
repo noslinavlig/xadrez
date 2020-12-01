@@ -50,19 +50,50 @@ public class Peca {
 
     //METODO NOVO TESTA MOVIMENTAÇÃO INDICADA
     public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy){
-        switch(Math.abs(this.getTipo())){
-            case 3:
+              switch(Math.abs(this.getTipo())){
+               case 3:
+               
+                    
                 if(Py == 1)
-                    if(Qy - Py <= 2 && Px == Qx){
+                    if(Qy - Py <= 2 && Qy - Py > 0 && Px == Qx){
                         return true;
                     } else 
                         return false;
-                if(Qy - Py < 2 && Px == Qx)
+                   if(Qy - Py == 1 && Px == Qx && Py > 0){
                     return true;
-                else return false;
-            default:
+                } else return false;
+                
+               case 4:
+                if(Px == Qx || Py == Qy)
+                    return true;
+                    else return false;
+                //break;
+               case 5:
+                    if(Math.abs(Qy - Py) + Math.abs(Qx - Px) == 3 && Px != Qx && Py != Qy)
+                    return true;
+                    else return false;
+               // break;
+               case 6:
+                   if((Math.abs(Qx - Px) == Math.abs(Qy - Py)) )
+                     return true;
+                     else return false;
+                     
+               case 7:
+                if((Math.abs(Qx - Px) == Math.abs(Qy - Py)) ||
+                    Qx == Px || Qy == Py)
+                    return true;
+                    else return false;
+                //break;
+               case 8:
+                if(Math.abs(Qy - Py) + Math.abs(Qx - Px) == 1 || Math.abs(Qy - Py) == 1 && Math.abs(Qx - Px) == 1)
+                    return true;
+                    else return false;
+                //break;
+            
+                default: 
                 return false;
             }
+           
     }
 
     /**
