@@ -21,9 +21,8 @@ public class Peca {
     public static final int TORRE_PRETA = -4;
     public static final int CAVALO_BRANCO = 5;
     public static final int CAVALO_PRETO = -5;
-    /*
-    * Bispo aqui
-    */
+    public static final int BISPO_BRANCO = 6;
+    public static final int BISPO_PRETO = -6;
     public static final int RAINHA_BRANCA = 7;
     public static final int RAINHA_PRETA = -7;
     public static final int REI_BRANCO = 8;
