@@ -64,6 +64,16 @@ public class Jogo {
         Peca peca24 = new Peca(casa24, Peca.TORRE_PRETA);
         Casa casa25 = tabuleiro.getCasa(7,7);
         Peca peca25 = new Peca(casa25, Peca.TORRE_PRETA);
+        
+        //Adicionar os bispos ao tabuleiro
+        Casa casa26 = tabuleiro.getCasa(2,0);
+        Peca peca26 = new Peca(casa26, Peca.BISPO_BRANCO);
+        Casa casa27 = tabuleiro.getCasa(5,0);
+        Peca peca27 = new Peca(casa27, Peca.BISPO_BRANCO);
+        Casa casa28 = tabuleiro.getCasa(2,7);
+        Peca peca28 = new Peca(casa28, Peca.BISPO_PRETO);
+        Casa casa29 = tabuleiro.getCasa(5,7);
+        Peca peca29 = new Peca(casa29, Peca.BISPO_PRETO);
 
         }
 
