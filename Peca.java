@@ -1,4 +1,5 @@
 
+
 /**
  * Representa uma Pe�a do jogo.
  * Possui uma casa e um tipo associado.
@@ -47,50 +48,82 @@ public class Peca {
         casa = destino;
     }
 
+    //Retorna uma String com o nome da direção do movimento
+    public String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
+        if(Px == Qx)
+            return "vertical";
+        else if(Py == Qy)
+            return "horizontal";
+        else if(Math.abs(Qx - Px) == Math.abs(Qy - Py))
+            return "diagonal";
+        else
+            return "outro";
+    }
+    //Retorna o número de casas de um movimento
+    public int deslocamentoModulo(int Px, int Py, int Qx, int Qy){
+        //Se for diagonal, contamos o numero de casas através de um único eixo
+        if (Math.abs(Qx - Px) == Math.abs(Qy - Py))
+            return Math.abs(Qx - Px);
+        //Retorna o número de casas se o movimento for vertical ou horizontal
+        else
+            return Math.abs(Qx - Px) + Math.abs(Qy - Py);
+    }
+
     //METODO NOVO TESTA MOVIMENTAÇÃO INDICADA
     public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy){
-              switch(Math.abs(this.getTipo())){
-               case 3:
-               
-                    
-                if(Py == 1)
-                    if(Qy - Py <= 2 && Qy - Py > 0 && Px == Qx){
+        String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
+        int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
+        System.out.println(distancia + "casas");
+            switch(Math.abs(this.getTipo())){
+                case 3:
+                    //Caso seja peao preto, essas serao as regras
+                    if(this.getTipo() == -3){
+                        if(Py == 6)
+                            if(distancia <= 2 && direcao == "vertical"){
+                                return true;
+                            } else 
+                                return false;
+                        if(distancia == 1 && Qy < Py && (direcao == "vertical")){
+                            return true;
+                        } else 
+                            return false;
+                        } //Regras para peões brancos 
+                        else if(Py == 1)
+                            if(distancia <= 2 && direcao == "vertical"){
+                                return true;
+                            } else 
+                                return false;
+                        if(distancia == 1 && Qy > Py && (direcao == "vertical")){
+                            return true;
+                        } else 
+                            return false;
+                case 4:
+                    if(direcao == "horizontal" || direcao == "vertical")
                         return true;
-                    } else 
+                    else 
                         return false;
-                   if(Qy - Py == 1 && Px == Qx && Py > 0){
-                    return true;
-                } else return false;
-                
-               case 4:
-                if(Px == Qx || Py == Qy)
-                    return true;
-                    else return false;
-                //break;
-               case 5:
-                    if(Math.abs(Qy - Py) + Math.abs(Qx - Px) == 3 && Px != Qx && Py != Qy)
-                    return true;
-                    else return false;
-               // break;
-               case 6:
-                   if((Math.abs(Qx - Px) == Math.abs(Qy - Py)) )
-                     return true;
-                     else return false;
-                     
-               case 7:
-                if((Math.abs(Qx - Px) == Math.abs(Qy - Py)) ||
-                    Qx == Px || Qy == Py)
-                    return true;
-                    else return false;
-                //break;
-               case 8:
-                if(Math.abs(Qy - Py) + Math.abs(Qx - Px) == 1 || Math.abs(Qy - Py) == 1 && Math.abs(Qx - Px) == 1)
-                    return true;
-                    else return false;
-                //break;
-            
+                case 5:
+                    if(distancia == 3 && Px != Qx && Py != Qy)
+                        return true;
+                    else 
+                        return false;
+                case 6:
+                    if(direcao == "diagonal")
+                        return true;
+                    else
+                        return false;     
+                case 7:
+                    if(direcao == "horizontal" || direcao == "diagonal" || direcao == "vertical")
+                        return true;
+                    else 
+                        return false;
+                case 8:
+                    if(distancia == 1)
+                        return true;
+                    else 
+                        return false;
                 default: 
-                return false;
+                    return false;
             }
            
     }
