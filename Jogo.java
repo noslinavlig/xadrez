@@ -102,15 +102,23 @@ public class Jogo {
         Casa origem = tabuleiro.getCasa(P.getPosicaoX(), P.getPosicaoY());
         Casa destino = tabuleiro.getCasa(Q.getPosicaoX(), Q.getPosicaoY());
         Peca peca = origem.getPeca();
-        if (this.jogada %2 ==0 && peca.getTipo() > 0){
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY()) && (!destino.possuiPeca() || destino.getPeca().getTipo() < 0)){
+       if (this.jogada %2 ==0 && peca.getTipo() > 0){
+            //Verifica se o movimento é permitido baseado no tipo da peca, e se a casa destino esta vazia ou com uma peca de outra cor
+          
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY()) && (!destino.possuiPeca() || destino.getPeca().getTipo() < 0)
+             && peca.analiseCaminho(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro)){
                 peca.mover(destino);
                 this.jogada++;
             }
+        
+        //Testa se a rodada é das pretas e se a peça é preta
         } else if (this.jogada %2 != 0 && peca.getTipo() < 0){
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY()) && (!destino.possuiPeca() || destino.getPeca().getTipo() > 0)){
-            peca.mover(destino);
-            this.jogada++;
+            //Verifica se o movimento é permitido baseado no tipo da peca, e se a casa destino esta vazia ou com uma peca de outra cor
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY()) && (!destino.possuiPeca() || destino.getPeca().getTipo() > 0)
+            && peca.analiseCaminho(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(),this.getTabuleiro())){
+                peca.mover(destino);
+                this.jogada++;
+        }
         }
         }
         /*
