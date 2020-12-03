@@ -108,7 +108,7 @@ public class Peca {
                     else 
                         return false;
                 case 6:
-                    if(direcao.equals("diagonal"))
+                    if(direcao.equals("diagonal") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
                     else
                         return false;     
@@ -134,7 +134,75 @@ public class Peca {
         //boolean controle;
         switch(direcao){
             case 'd':
-                return true;
+                //Sentido positivo em X e em Y
+                if(Qx > Px && Qy > Py){
+                    System.out.println("NORDESTE");
+                    int i = 1;
+                    
+                    do{
+                        caminho = tabuleiro.getCasa(Px + i, Py + j);
+                        
+                        i++;
+                        
+                    } while(!caminho.possuiPeca() && Px + i < 8 && Py + i < 8);
+                    if(Px + i <= Qx && Py + i <= Qy){
+                        
+                        return false;
+                    }
+                    else
+                        return true;
+                } //Sentido postitivo de X e negativo de Y
+                  else if(Qx > Px && Qy < Py){
+                    System.out.println("SUDESTE");
+                    int i = 1;
+                   
+                    do{
+                        caminho = tabuleiro.getCasa(Px + i, Py - i);
+                        
+                        i++;
+                       
+                    } while(!caminho.possuiPeca() && Px + i < 8 && Py - i >= 0);
+                    if(Px + i <= Qx && Py - i >= Qy){
+                        
+                        return false;
+                    }
+                    else
+                        return true;
+                } //Sentido negativo em X e positivo em Y
+                 else if(Qx < Px && Qy > Py){
+                    System.out.println("NOROESTE");
+                    int i = 1;
+                    
+                    do{
+                        caminho = tabuleiro.getCasa(Px - i, Py + i);
+                        
+                        i++;
+                       /
+                    } while(!caminho.possuiPeca() && Px - i >= 0 && Py + i < 8);
+                    if(Px - i >= Qx && Py + i <= Qy){
+                        
+                        return false;
+                    }
+                    else
+                        return true;
+                } //Sentido negativo em X e Y
+                  else if(Qx < Px && Qy < Py){
+                    System.out.println("SUDOESTE");
+                    int i = 1;
+                   
+                    do{
+                        caminho = tabuleiro.getCasa(Px - i, Py - i);
+                        
+                        i++;
+                   
+                    } while(!caminho.possuiPeca() && Px - i >= 0 && Py - i >= 0);
+                    if(Px - i >= Qx && Py - i >= Qy){
+                        
+                        return false;
+                    }
+                    else
+                        return true;
+                }
             case 'v':
                 //Sentido positivo em Y
                 if(Qy > Py){
