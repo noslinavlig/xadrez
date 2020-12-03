@@ -49,18 +49,19 @@ public class Peca {
     }
 
     //Retorna uma String com o nome da direção do movimento
-    public String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
+    private String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
         if(Px == Qx)
             return "vertical";
         else if(Py == Qy)
             return "horizontal";
         else if(Math.abs(Qx - Px) == Math.abs(Qy - Py))
-            return "diagonal";
+            return"diagonal" ;
         else
             return "outro";
     }
+
     //Retorna o número de casas de um movimento
-    public int deslocamentoModulo(int Px, int Py, int Qx, int Qy){
+    private int deslocamentoModulo(int Px, int Py, int Qx, int Qy){
         //Se for diagonal, contamos o numero de casas através de um único eixo
         if (Math.abs(Qx - Px) == Math.abs(Qy - Py))
             return Math.abs(Qx - Px);
@@ -73,32 +74,31 @@ public class Peca {
     public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy){
         String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
         int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
-        System.out.println(distancia + "casas");
             switch(Math.abs(this.getTipo())){
                 case 3:
                     //Caso seja peao preto, essas serao as regras
                     if(this.getTipo() == -3){
                         if(Py == 6)
-                            if(distancia <= 2 && direcao == "vertical"){
+                            if(distancia <= 2 && direcao.equals("vertical")){
                                 return true;
                             } else 
                                 return false;
-                        if(distancia == 1 && Qy < Py && (direcao == "vertical")){
+                        if(distancia == 1 && Qy < Py && (direcao.equals("vertical"))){
                             return true;
                         } else 
                             return false;
                         } //Regras para peões brancos 
                         else if(Py == 1)
-                            if(distancia <= 2 && direcao == "vertical"){
+                            if(distancia <= 2 && direcao.equals("vertical")){
                                 return true;
                             } else 
                                 return false;
-                        if(distancia == 1 && Qy > Py && (direcao == "vertical")){
+                        if(distancia == 1 && Qy > Py && (direcao.equals("vertical"))){
                             return true;
                         } else 
                             return false;
                 case 4:
-                    if(direcao == "horizontal" || direcao == "vertical")
+                    if(direcao.equals("horizontal") || direcao.equals("vertical"))
                         return true;
                     else 
                         return false;
@@ -108,12 +108,12 @@ public class Peca {
                     else 
                         return false;
                 case 6:
-                    if(direcao == "diagonal")
+                    if(direcao.equals("diagonal"))
                         return true;
                     else
                         return false;     
                 case 7:
-                    if(direcao == "horizontal" || direcao == "diagonal" || direcao == "vertical")
+                    if(direcao.equals("horizontal") || direcao.equals("diagonal") || direcao.equals("vertical"))
                         return true;
                     else 
                         return false;
