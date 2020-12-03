@@ -71,9 +71,9 @@ public class Peca {
     }
 
     //METODO NOVO TESTA MOVIMENTAÇÃO INDICADA
-    public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){
-        String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
-        int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
+        public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){
+            String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
+            int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
             switch(Math.abs(this.getTipo())){
                 case 3:
                     //Caso seja peao preto, essas serao as regras
@@ -138,12 +138,12 @@ public class Peca {
                 if(Qx > Px && Qy > Py){
                     System.out.println("NORDESTE");
                     int i = 1;
-                    
+                    int j = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px + i, Py + j);
                         
                         i++;
-                        
+                        j++;
                     } while(!caminho.possuiPeca() && Px + i < 8 && Py + i < 8);
                     if(Px + i <= Qx && Py + i <= Qy){
                         
@@ -155,12 +155,12 @@ public class Peca {
                   else if(Qx > Px && Qy < Py){
                     System.out.println("SUDESTE");
                     int i = 1;
-                   
+                    int j = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px + i, Py - i);
                         
                         i++;
-                       
+                       // j++;
                     } while(!caminho.possuiPeca() && Px + i < 8 && Py - i >= 0);
                     if(Px + i <= Qx && Py - i >= Qy){
                         
@@ -172,12 +172,12 @@ public class Peca {
                  else if(Qx < Px && Qy > Py){
                     System.out.println("NOROESTE");
                     int i = 1;
-                    
+                    int j = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px - i, Py + i);
                         
                         i++;
-                       /
+                       // j++;
                     } while(!caminho.possuiPeca() && Px - i >= 0 && Py + i < 8);
                     if(Px - i >= Qx && Py + i <= Qy){
                         
@@ -189,12 +189,12 @@ public class Peca {
                   else if(Qx < Px && Qy < Py){
                     System.out.println("SUDOESTE");
                     int i = 1;
-                   
+                    int j = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px - i, Py - i);
                         
                         i++;
-                   
+                       // j++;
                     } while(!caminho.possuiPeca() && Px - i >= 0 && Py - i >= 0);
                     if(Px - i >= Qx && Py - i >= Qy){
                         
@@ -203,6 +203,7 @@ public class Peca {
                     else
                         return true;
                 }
+                
             case 'v':
                 //Sentido positivo em Y
                 if(Qy > Py){
