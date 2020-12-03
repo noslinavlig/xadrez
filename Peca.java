@@ -76,27 +76,42 @@ public class Peca {
             int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
             switch(Math.abs(this.getTipo())){
                 case 3:
+                    Casa destino = tabuleiro.getCasa(Qx, Qy);
                     //Caso seja peao preto, essas serao as regras
                     if(this.getTipo() == -3){
-                        if(Py == 6)
+                        if(Py == 6){
                             if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro)){
                                 return true;
-                            } else 
-                                return false;
+                            }
+                        }
                         if(distancia == 1 && Qy < Py && (direcao.equals("vertical"))){
                             return true;
-                        } else 
-                            return false;
-                        } //Regras para peões brancos 
-                        else if(Py == 1)
+                        }
+                        // captura do peao preto
+                        if(distancia == 1 && Qy < Py && Qx < Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() > 0){
+                            return true;
+                        }
+                        if(distancia == 1 && Qy < Py && Qx > Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() > 0){
+                            return true;
+                        }
+                        else return false;
+                    }
+                        //Regras para peoes brancos 
+                        if(Py == 1)
                             if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro)){
                                 return true;
-                            } else 
-                                return false;
+                            }
                         if(distancia == 1 && Qy > Py && (direcao.equals("vertical"))){
                             return true;
-                        } else 
-                            return false;
+                        }
+                        //captura do peao branco
+                        if(distancia == 1 && Qy > Py && Qx > Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() < 0){
+                            return true;
+                        }
+                        if(distancia == 1 && Qy > Py && Qx < Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() < 0){
+                            return true;
+                        }
+                        else return false;
                 case 4:
                     if((direcao.equals("horizontal") || direcao.equals("vertical")) && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
