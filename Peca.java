@@ -84,7 +84,7 @@ public class Peca {
                                 return true;
                             }
                         }
-                        if(distancia == 1 && Qy < Py && (direcao.equals("vertical"))){
+                        if(distancia == 1 && Qy < Py && (direcao.equals("vertical")) && !destino.possuiPeca()) {
                             return true;
                         }
                         // captura do peao preto
@@ -101,7 +101,7 @@ public class Peca {
                             if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro)){
                                 return true;
                             }
-                        if(distancia == 1 && Qy > Py && (direcao.equals("vertical"))){
+                        if(distancia == 1 && Qy > Py && (direcao.equals("vertical")) && !destino.possuiPeca()){
                             return true;
                         }
                         //captura do peao branco
