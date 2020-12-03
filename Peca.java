@@ -80,7 +80,7 @@ public class Peca {
                     //Caso seja peao preto, essas serao as regras
                     if(this.getTipo() == -3){
                         if(Py == 6){
-                            if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro)){
+                            if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro) && !destino.possuiPeca()){
                                 return true;
                             }
                         }
@@ -98,7 +98,7 @@ public class Peca {
                     }
                         //Regras para peoes brancos 
                         if(Py == 1)
-                            if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro)){
+                            if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro) && !destino.possuiPeca()){
                                 return true;
                             }
                         if(distancia == 1 && Qy > Py && (direcao.equals("vertical")) && !destino.possuiPeca()){
