@@ -157,7 +157,7 @@ public class Peca {
                     do{
                         caminho = tabuleiro.getCasa(Qx, Py - i);
                         i++;
-                    } while(!caminho.possuiPeca() && Py - i > 0);
+                    } while(!caminho.possuiPeca() && Py - i >= 0);
                     if(Py - i >= Qy){
                         
                         return false;
@@ -187,10 +187,10 @@ public class Peca {
                     System.out.println("OESTE");
                     int i = 1;
                     do{
-                        caminho = tabuleiro.getCasa(Px + i, Qy);
+                        caminho = tabuleiro.getCasa(Px - i, Qy);
                         
                         i++;
-                    } while(!caminho.possuiPeca() && Px - i > 0);
+                    } while(!caminho.possuiPeca() && Px - i >= 0);
                     if(Px - i >= Qx){
                         
                         return false;
