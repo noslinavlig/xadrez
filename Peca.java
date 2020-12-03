@@ -71,7 +71,7 @@ public class Peca {
     }
 
     //METODO NOVO TESTA MOVIMENTAÇÃO INDICADA
-    public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy){
+    public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){
         String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
         int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
             switch(Math.abs(this.getTipo())){
@@ -98,7 +98,7 @@ public class Peca {
                         } else 
                             return false;
                 case 4:
-                    if(direcao.equals("horizontal") || direcao.equals("vertical"))
+                    if((direcao.equals("horizontal") || direcao.equals("vertical")) && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
                     else 
                         return false;
@@ -113,7 +113,7 @@ public class Peca {
                     else
                         return false;     
                 case 7:
-                    if(direcao.equals("horizontal") || direcao.equals("diagonal") || direcao.equals("vertical"))
+                    if((direcao.equals("horizontal") || direcao.equals("diagonal") || direcao.equals("vertical")) && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
                     else 
                         return false;
@@ -127,11 +127,89 @@ public class Peca {
             }
            
     }
+    
+    public boolean caminhoLivre(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){
+        Casa caminho;
+        char direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy).charAt(0);
+        //boolean controle;
+        switch(direcao){
+            case 'd':
+                return true;
+            case 'v':
+                //Sentido positivo em Y
+                if(Qy > Py){
+                    System.out.println("NORTE");
+                    int i = 1;
+                    do{
+                        caminho = tabuleiro.getCasa(Qx, Py + i);
+                        i++;
+                    } while(!caminho.possuiPeca() && Py + i < 8);
+                    if(Py + i <= Qy){
+                        return false;
+                    }
+                    else
+                        return true;
+                } 
+                //Sentido negativo em Y
+                else if(Py > Qy){
+                    System.out.println("SUL");
+                    int i = 1;
+                    do{
+                        caminho = tabuleiro.getCasa(Qx, Py - i);
+                        i++;
+                    } while(!caminho.possuiPeca() && Py - i > 0);
+                    if(Py - i >= Qy){
+                        
+                        return false;
+                    }
+                    else
+                        return true;
+                }
+            case 'h':
+                //Sentido positivo em X
+                if(Qx > Px){
+                    System.out.println("LESTE");
+                    int i = 1;
+                    do{
+                        caminho = tabuleiro.getCasa(Px + i, Qy);
+                        
+                        i++;
+                    } while(!caminho.possuiPeca() && Px + i < 8);
+                    if(Px + i <= Qx){
+                        
+                        return false;
+                    }
+                    else
+                        return true;
+                } 
+                //Sentido negativo em X
+                else if(Px > Qx){
+                    System.out.println("OESTE");
+                    int i = 1;
+                    do{
+                        caminho = tabuleiro.getCasa(Px + i, Qy);
+                        
+                        i++;
+                    } while(!caminho.possuiPeca() && Px - i > 0);
+                    if(Px - i >= Qx){
+                        
+                        return false;
+                    }
+                    else
+                        return true;
+                }
+            default:
+                return false;
+        }
+    }
+    
+    /*
     public boolean analiseCaminho(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){ 
-           String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
+           char direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy).charAt(0);
+           System.out.println(direcao);
            Boolean restricao = false;
            switch(direcao){
-            case "horizontal":
+            case 'h':
            if (Qx > Px){
            for(int i = Px; i< Qx;i++){
              Casa caminho = tabuleiro.getCasa(Px + i, Qy);
@@ -166,7 +244,7 @@ public class Peca {
             }
         }
     
-        case "vertical": 
+        case 'v': 
            if(Qy > Py){
             for(int i = Py; i < Qy;i++){
                 if(i == 0){
@@ -201,7 +279,7 @@ public class Peca {
                 }
             }
            } 
-           case "diagonal":
+           case 'd':
             if( Qx>Px && Qy>Py){
              for(int i = Px; i<Qx;i++){
                for(int j = Py;i<Qy;j++){
@@ -277,7 +355,7 @@ public class Peca {
         if(restricao)
          return false;
          else return true;
-        }
+        }*/
     
 
     /**

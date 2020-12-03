@@ -24,10 +24,11 @@ public class Jogo {
         
         //Adicionar peões brancos no tabuleiro
         int i = 0;
+        int j = 0;
         Casa casa;
         Peca peca;
-        int j = 0;
-
+        
+        
         for (i = 0; i < 8; i++){
             for(j = 0; j < 8; j++){
                 switch(j){
@@ -105,8 +106,7 @@ public class Jogo {
        if (this.jogada %2 ==0 && peca.getTipo() > 0){
             //Verifica se o movimento é permitido baseado no tipo da peca, e se a casa destino esta vazia ou com uma peca de outra cor
           
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY()) && (!destino.possuiPeca() || destino.getPeca().getTipo() < 0)
-             && peca.analiseCaminho(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro)){
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro) && (!destino.possuiPeca() || destino.getPeca().getTipo() < 0)){
                 peca.mover(destino);
                 this.jogada++;
             }
@@ -114,13 +114,12 @@ public class Jogo {
         //Testa se a rodada é das pretas e se a peça é preta
         } else if (this.jogada %2 != 0 && peca.getTipo() < 0){
             //Verifica se o movimento é permitido baseado no tipo da peca, e se a casa destino esta vazia ou com uma peca de outra cor
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY()) && (!destino.possuiPeca() || destino.getPeca().getTipo() > 0)
-            && peca.analiseCaminho(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(),this.getTabuleiro())){
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro) && (!destino.possuiPeca() || destino.getPeca().getTipo() > 0)){
                 peca.mover(destino);
                 this.jogada++;
+            }
         }
-        }
-        }
+    }
         /*
         switch(Math.abs(peca.getTipo())){
             case 3:
@@ -154,7 +153,7 @@ public class Jogo {
                     peca.mover(destino);
                 break;
         }*/    
-    }
+    
     /**
      * @return o Tabuleiro em jogo.
      */
