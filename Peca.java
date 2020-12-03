@@ -127,6 +127,158 @@ public class Peca {
             }
            
     }
+    public boolean analiseCaminho(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){ 
+           String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
+           Boolean restricao = false;
+           switch(direcao){
+            case "horizontal":
+           if (Qx > Px){
+           for(int i = Px; i< Qx;i++){
+             Casa caminho = tabuleiro.getCasa(Px + i, Qy);
+             System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+              }else {
+                  restricao = false;
+                  System.out.println("sem peca no caminho");
+                }
+            
+            }
+        }else if(Qx < Px){
+           for(int i = Qx; i >= Px;i--){
+                if(i == 0){
+                  i = 1;
+                  Qx= Qx + 1;
+                }
+               Casa caminho = tabuleiro.getCasa(Px - 1, Qy);
+               System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+               }else {
+                  restricao = false;
+                  System.out.println("sem peca no caminho");
+                }
+            
+            }
+        }
+    
+        case "vertical": 
+           if(Qy > Py){
+            for(int i = Py; i < Qy;i++){
+                if(i == 0){
+                 i = 1;
+                  Qy++;
+                }
+               Casa caminho = tabuleiro.getCasa(Qx, Py + i);
+               System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+              }else {
+                  restricao = false;
+                  System.out.println("sem peca no caminho");
+                 
+                }
+            }
+            }
+           else if(Qy < Py){
+             for(int i = Py; i >= Qy;i--){
+               Casa caminho = tabuleiro.getCasa(Qx,Py - 1);
+               System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+              }else {
+                  restricao = false;
+                  System.out.println("sem peca no caminho");
+                 
+                }
+            }
+           } 
+           case "diagonal":
+            if( Qx>Px && Qy>Py){
+             for(int i = Px; i<Qx;i++){
+               for(int j = Py;i<Qy;j++){
+             Casa caminho = tabuleiro.getCasa(i, j);
+             System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+              }else {
+                    restricao = false;
+                    System.out.println("sem peca no caminho");
+                }
+              }
+             }
+            
+            } else if(Qx>Px && Qy<Py){
+             for(int i = Px; i<Qx;i++){
+               for(int j = Py;i>=Qy;j--){
+             Casa caminho = tabuleiro.getCasa(i, j);
+             System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+              }else {
+                  restricao = false;
+                    System.out.println("sem peca no caminho");
+                }
+              }
+             }
+             }else if(Qx<Px && Qy>Py){
+             for(int i = Px; i>=Qx;i--){
+               for(int j = Py;i<Qy;j++){
+             Casa caminho = tabuleiro.getCasa(i, j);
+             System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+              }else {
+                  restricao = false;
+                    System.out.println("sem peca no caminho");
+                }
+              }
+             }
+             }else if(Qx<Px && Qy<Py){
+             for(int i = Px; i>=Qx;i--){
+               for(int j = Py;i>=Qy;j--){
+             Casa caminho = tabuleiro.getCasa(i, j);
+             System.out.println(i);
+             if(caminho.possuiPeca()){
+                restricao = true;
+                System.out.println("peca no caminho");
+                break;
+              }else {
+                  restricao = false;
+                    System.out.println("sem peca no caminho");
+                }
+              }
+             }
+            
+            }
+            
+            if (restricao)
+             return false;
+            else return true;
+            
+        
+        }
+  
+    
+        if(restricao)
+         return false;
+         else return true;
+        }
+    
 
     /**
      * Valor    Tipo
