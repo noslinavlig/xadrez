@@ -77,41 +77,31 @@ public class Peca {
             switch(Math.abs(this.getTipo())){
                 case 3:
                     Casa destino = tabuleiro.getCasa(Qx, Qy);
+                    boolean sentidopositivo = Py < Qy;
                     //Caso seja peao preto, essas serao as regras
                     if(this.getTipo() == -3){
+                        //Verificando se é primeira jogada
                         if(Py == 6){
-                            if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro) && !destino.possuiPeca()){
+                            if(distancia <= 2 && direcao.equals("vertical")){
                                 return true;
                             }
-                        }
-                        if(distancia == 1 && Qy < Py && (direcao.equals("vertical")) && !destino.possuiPeca()) {
+                        } else
+                        //Movimento genérico do peão
+                        if(!sentidopositivo && distancia == 1 && ((direcao.equals("diagonal")) && destino.possuiPeca() || direcao.equals("vertical") && !destino.possuiPeca()) ){
                             return true;
-                        }
-                        // captura do peao preto
-                        if(distancia == 1 && Qy < Py && Qx < Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() > 0){
-                            return true;
-                        }
-                        if(distancia == 1 && Qy < Py && Qx > Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() > 0){
-                            return true;
-                        }
-                        else return false;
-                    }
-                        //Regras para peoes brancos 
+                        }else 
+                            return false;
+                    } else //Regras para peoes brancos 
+                        //Verificando se é primeira jogada
                         if(Py == 1)
-                            if(distancia <= 2 && direcao.equals("vertical") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro) && !destino.possuiPeca()){
-                                return true;
+                            if(distancia <= 2 && direcao.equals("vertical")){
+                                    return true;
                             }
-                        if(distancia == 1 && Qy > Py && (direcao.equals("vertical")) && !destino.possuiPeca()){
-                            return true;
-                        }
-                        //captura do peao branco
-                        if(distancia == 1 && Qy > Py && Qx > Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() < 0){
-                            return true;
-                        }
-                        if(distancia == 1 && Qy > Py && Qx < Px && (direcao.equals("diagonal")) && destino.getPeca().getTipo() < 0){
-                            return true;
-                        }
-                        else return false;
+                            //Movimento genérico do peão
+                            if(sentidopositivo && distancia == 1 && ((direcao.equals("diagonal")) && destino.possuiPeca() || direcao.equals("vertical") && !destino.possuiPeca()) ){
+                                return true;
+                            }else
+                                return false;
                 case 4:
                     if((direcao.equals("horizontal") || direcao.equals("vertical")) && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
