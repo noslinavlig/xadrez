@@ -265,6 +265,7 @@ public class JanelaPrincipal extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                System.out.println("BRANCAS COMEÇAM");
                 new JanelaPrincipal().setVisible(true);
             }
         });

@@ -77,31 +77,32 @@ public class Peca {
             switch(Math.abs(this.getTipo())){
                 case 3:
                     Casa destino = tabuleiro.getCasa(Qx, Qy);
-                    boolean sentidopositivo = Py < Qy;
-                    //Caso seja peao preto, essas serao as regras
-                    if(this.getTipo() == -3){
+                    boolean sentidopositivo = Py < Qy;                    
+                    if(this.getTipo() == -3){//Caso seja peao preto, essas serao as regras
+
                         //Verificando se é primeira jogada
-                        if(Py == 6){
-                            if(distancia <= 2 && direcao.equals("vertical")){
-                                return true;
-                            }
-                        } else
-                        //Movimento genérico do peão
-                        if(!sentidopositivo && distancia == 1 && ((direcao.equals("diagonal")) && destino.possuiPeca() || direcao.equals("vertical") && !destino.possuiPeca()) ){
+                        if(Py == 6 && distancia <= 2 && direcao.equals("vertical"))
                             return true;
-                        }else 
+                        else //Movimento genérico do peão
+
+                        if(distancia == 1 && !sentidopositivo && ((direcao.equals("diagonal")) && destino.possuiPeca() 
+                                                                    || direcao.equals("vertical") && !destino.possuiPeca()) )
+                            return true;
+                        else 
                             return false;
-                    } else //Regras para peoes brancos 
+
+                    } else //Regras para peoes brancos
+
                         //Verificando se é primeira jogada
-                        if(Py == 1)
-                            if(distancia <= 2 && direcao.equals("vertical")){
-                                    return true;
-                            }
-                            //Movimento genérico do peão
-                            if(sentidopositivo && distancia == 1 && ((direcao.equals("diagonal")) && destino.possuiPeca() || direcao.equals("vertical") && !destino.possuiPeca()) ){
-                                return true;
-                            }else
-                                return false;
+                        if(Py == 1 && distancia <= 2 && direcao.equals("vertical")){
+                            return true;
+                        } else //Movimento genérico do peão
+                        if(distancia == 1 && sentidopositivo && ((direcao.equals("diagonal")) && destino.possuiPeca() 
+                                                                    || direcao.equals("vertical") && !destino.possuiPeca()) ){
+                            return true;
+                        }else
+                            return false;
+                
                 case 4:
                     if((direcao.equals("horizontal") || direcao.equals("vertical")) && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
@@ -116,9 +117,11 @@ public class Peca {
                     if(direcao.equals("diagonal") && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
                     else
-                        return false;     
+                        return false;
+                        
                 case 7:
-                    if((direcao.equals("horizontal") || direcao.equals("diagonal") || direcao.equals("vertical")) && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
+                    if((direcao.equals("horizontal") || direcao.equals("diagonal") || direcao.equals("vertical"))
+                        && this.caminhoLivre(Px, Py, Qx, Qy, tabuleiro))
                         return true;
                     else 
                         return false;
@@ -136,19 +139,18 @@ public class Peca {
     public boolean caminhoLivre(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){
         Casa caminho;
         char direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy).charAt(0);
-        //boolean controle;
+        boolean positivoX = Qx > Px;
+        boolean positivoY = Qy > Py;
         switch(direcao){
             case 'd':
                 //Sentido positivo em X e em Y
-                if(Qx > Px && Qy > Py){
-                    System.out.println("NORDESTE");
+                if(positivoX && positivoY){
+
                     int i = 1;
-                    int j = 1;
                     do{
-                        caminho = tabuleiro.getCasa(Px + i, Py + j);
+                        caminho = tabuleiro.getCasa(Px + i, Py + i);
                         
                         i++;
-                        j++;
                     } while(!caminho.possuiPeca() && Px + i < 8 && Py + i < 8);
                     if(Px + i <= Qx && Py + i <= Qy){
                         
@@ -156,16 +158,13 @@ public class Peca {
                     }
                     else
                         return true;
-                } //Sentido postitivo de X e negativo de Y
-                  else if(Qx > Px && Qy < Py){
-                    System.out.println("SUDESTE");
+                } else //Sentido postitivo de X e negativo de Y
+                if(positivoX && !positivoY){
+
                     int i = 1;
-                    int j = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px + i, Py - i);
-                        
                         i++;
-                       // j++;
                     } while(!caminho.possuiPeca() && Px + i < 8 && Py - i >= 0);
                     if(Px + i <= Qx && Py - i >= Qy){
                         
@@ -173,16 +172,14 @@ public class Peca {
                     }
                     else
                         return true;
-                } //Sentido negativo em X e positivo em Y
-                 else if(Qx < Px && Qy > Py){
-                    System.out.println("NOROESTE");
+                } else //Sentido negativo em X e positivo em Y
+                if(!positivoX &&  positivoY){
+
                     int i = 1;
-                    int j = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px - i, Py + i);
                         
                         i++;
-                       // j++;
                     } while(!caminho.possuiPeca() && Px - i >= 0 && Py + i < 8);
                     if(Px - i >= Qx && Py + i <= Qy){
                         
@@ -190,16 +187,14 @@ public class Peca {
                     }
                     else
                         return true;
-                } //Sentido negativo em X e Y
-                  else if(Qx < Px && Qy < Py){
-                    System.out.println("SUDOESTE");
+                } else //Sentido negativo em X e Y
+                if(!positivoX && !positivoY){
+
                     int i = 1;
-                    int j = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px - i, Py - i);
                         
                         i++;
-                       // j++;
                     } while(!caminho.possuiPeca() && Px - i >= 0 && Py - i >= 0);
                     if(Px - i >= Qx && Py - i >= Qy){
                         
@@ -211,8 +206,8 @@ public class Peca {
                 
             case 'v':
                 //Sentido positivo em Y
-                if(Qy > Py){
-                    System.out.println("NORTE");
+                if(positivoY){
+
                     int i = 1;
                     do{
                         caminho = tabuleiro.getCasa(Qx, Py + i);
@@ -223,10 +218,9 @@ public class Peca {
                     }
                     else
                         return true;
-                } 
-                //Sentido negativo em Y
-                else if(Py > Qy){
-                    System.out.println("SUL");
+                } else //Sentido negativo em Y
+                if(!positivoY){
+
                     int i = 1;
                     do{
                         caminho = tabuleiro.getCasa(Qx, Py - i);
@@ -241,32 +235,27 @@ public class Peca {
                 }
             case 'h':
                 //Sentido positivo em X
-                if(Qx > Px){
-                    System.out.println("LESTE");
+                if(positivoX){
+
                     int i = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px + i, Qy);
-                        
                         i++;
                     } while(!caminho.possuiPeca() && Px + i < 8);
                     if(Px + i <= Qx){
-                        
                         return false;
                     }
                     else
                         return true;
-                } 
-                //Sentido negativo em X
-                else if(Px > Qx){
-                    System.out.println("OESTE");
+                } else //Sentido negativo em X
+                if(!positivoX){
+
                     int i = 1;
                     do{
                         caminho = tabuleiro.getCasa(Px - i, Qy);
-                        
                         i++;
                     } while(!caminho.possuiPeca() && Px - i >= 0);
-                    if(Px - i >= Qx){
-                        
+                    if(Px - i >= Qx){ 
                         return false;
                     }
                     else
@@ -275,162 +264,7 @@ public class Peca {
             default:
                 return false;
         }
-    }
-    
-    /*
-    public boolean analiseCaminho(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){ 
-           char direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy).charAt(0);
-           System.out.println(direcao);
-           Boolean restricao = false;
-           switch(direcao){
-            case 'h':
-           if (Qx > Px){
-           for(int i = Px; i< Qx;i++){
-             Casa caminho = tabuleiro.getCasa(Px + i, Qy);
-             System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-              }else {
-                  restricao = false;
-                  System.out.println("sem peca no caminho");
-                }
-            
-            }
-        }else if(Qx < Px){
-           for(int i = Qx; i >= Px;i--){
-                if(i == 0){
-                  i = 1;
-                  Qx= Qx + 1;
-                }
-               Casa caminho = tabuleiro.getCasa(Px - 1, Qy);
-               System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-               }else {
-                  restricao = false;
-                  System.out.println("sem peca no caminho");
-                }
-            
-            }
-        }
-    
-        case 'v': 
-           if(Qy > Py){
-            for(int i = Py; i < Qy;i++){
-                if(i == 0){
-                 i = 1;
-                  Qy++;
-                }
-               Casa caminho = tabuleiro.getCasa(Qx, Py + i);
-               System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-              }else {
-                  restricao = false;
-                  System.out.println("sem peca no caminho");
-                 
-                }
-            }
-            }
-           else if(Qy < Py){
-             for(int i = Py; i >= Qy;i--){
-               Casa caminho = tabuleiro.getCasa(Qx,Py - 1);
-               System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-              }else {
-                  restricao = false;
-                  System.out.println("sem peca no caminho");
-                 
-                }
-            }
-           } 
-           case 'd':
-            if( Qx>Px && Qy>Py){
-             for(int i = Px; i<Qx;i++){
-               for(int j = Py;i<Qy;j++){
-             Casa caminho = tabuleiro.getCasa(i, j);
-             System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-              }else {
-                    restricao = false;
-                    System.out.println("sem peca no caminho");
-                }
-              }
-             }
-            
-            } else if(Qx>Px && Qy<Py){
-             for(int i = Px; i<Qx;i++){
-               for(int j = Py;i>=Qy;j--){
-             Casa caminho = tabuleiro.getCasa(i, j);
-             System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-              }else {
-                  restricao = false;
-                    System.out.println("sem peca no caminho");
-                }
-              }
-             }
-             }else if(Qx<Px && Qy>Py){
-             for(int i = Px; i>=Qx;i--){
-               for(int j = Py;i<Qy;j++){
-             Casa caminho = tabuleiro.getCasa(i, j);
-             System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-              }else {
-                  restricao = false;
-                    System.out.println("sem peca no caminho");
-                }
-              }
-             }
-             }else if(Qx<Px && Qy<Py){
-             for(int i = Px; i>=Qx;i--){
-               for(int j = Py;i>=Qy;j--){
-             Casa caminho = tabuleiro.getCasa(i, j);
-             System.out.println(i);
-             if(caminho.possuiPeca()){
-                restricao = true;
-                System.out.println("peca no caminho");
-                break;
-              }else {
-                  restricao = false;
-                    System.out.println("sem peca no caminho");
-                }
-              }
-             }
-            
-            }
-            
-            if (restricao)
-             return false;
-            else return true;
-            
-        
-        }
-  
-    
-        if(restricao)
-         return false;
-         else return true;
-        }*/
-    
+    }    
 
     /**
      * Valor    Tipo

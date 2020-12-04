@@ -21,13 +21,11 @@ public class Jogo {
      * Utilizado na inicializa�ao do jogo.
      */
     private void criarPecas() {
-        
-        //Adicionar peões brancos no tabuleiro
+
         int i = 0;
         int j = 0;
         Casa casa;
         Peca peca;
-        
         
         for (i = 0; i < 8; i++){
             for(j = 0; j < 8; j++){
@@ -100,59 +98,33 @@ public class Jogo {
 
      //METODO NOVO SUBSTITUI moverPeca()
     public void fazerJogada(CasaGUI P, CasaGUI Q) {
+
         Casa origem = tabuleiro.getCasa(P.getPosicaoX(), P.getPosicaoY());
         Casa destino = tabuleiro.getCasa(Q.getPosicaoX(), Q.getPosicaoY());
         Peca peca = origem.getPeca();
-       if (this.jogada %2 ==0 && peca.getTipo() > 0){
-            //Verifica se o movimento é permitido baseado no tipo da peca, e se a casa destino esta vazia ou com uma peca de outra cor
-          
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro) && (!destino.possuiPeca() || destino.getPeca().getTipo() < 0)){
+        
+        if (this.jogada %2 ==0 && peca.getTipo() > 0){
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro)
+                && (!destino.possuiPeca() || destino.getPeca().getTipo() < 0)){
+        
                 peca.mover(destino);
                 this.jogada++;
+                System.out.println("VEZ DAS PRETAS");
+
             }
         
         //Testa se a rodada é das pretas e se a peça é preta
         } else if (this.jogada %2 != 0 && peca.getTipo() < 0){
-            //Verifica se o movimento é permitido baseado no tipo da peca, e se a casa destino esta vazia ou com uma peca de outra cor
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro) && (!destino.possuiPeca() || destino.getPeca().getTipo() > 0)){
+            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro)
+                && (!destino.possuiPeca() || destino.getPeca().getTipo() > 0)){
+                
                 peca.mover(destino);
                 this.jogada++;
+                System.out.println("VEZ DAS BRANCAS");
+
             }
         }
-    }
-        /*
-        switch(Math.abs(peca.getTipo())){
-            case 3:
-                
-            
-            // se for primeira jogada
-              if(x.getPosicaoY() == 1){ 
-                  //restringindo o primeiro movimento restringindo a diagonal
-                if(y.getPosicaoY() <= x.getPosicaoY() + 2 && y.getPosicaoY() > 0 && x.getPosicaoX() == y.getPosicaoX())
-                    peca.mover(destino);
-                } 
-               else if (y.getPosicaoY() == x.getPosicaoY() + 1 && x.getPosicaoX() == y.getPosicaoX())
-                  peca.mover(destino);
-              
-              break;
-            case 4:
-                if(y.getPosicaoX() == x.getPosicaoX() || y.getPosicaoY() == x.getPosicaoY())
-                    peca.mover(destino);
-                break;
-            case 5:
-                if(Math.abs(y.getPosicaoY() - x.getPosicaoY()) + Math.abs(y.getPosicaoX() - x.getPosicaoX()) == 3 && x.getPosicaoX() != y.getPosicaoX() && x.getPosicaoY() != y.getPosicaoY())
-                    peca.mover(destino);
-                break;
-            case 7:
-                if((Math.abs(y.getPosicaoX() - x.getPosicaoX()) == Math.abs(y.getPosicaoY() - x.getPosicaoY())) ||
-                    y.getPosicaoX() == x.getPosicaoX() || y.getPosicaoY() == x.getPosicaoY())
-                    peca.mover(destino);
-                break;
-            case 8:
-                if(Math.abs(y.getPosicaoY() - x.getPosicaoY()) + Math.abs(y.getPosicaoX() - x.getPosicaoX()) == 1 || Math.abs(y.getPosicaoY() - x.getPosicaoY()) == 1 && Math.abs(y.getPosicaoX() - x.getPosicaoX()) == 1)
-                    peca.mover(destino);
-                break;
-        }*/    
+    }    
     
     /**
      * @return o Tabuleiro em jogo.
