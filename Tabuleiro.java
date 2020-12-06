@@ -33,8 +33,8 @@ public class Tabuleiro {
         Casa caminho;
         boolean positivoX = Qx > Px;
         boolean positivoY = Qy > Py;
-        switch(direcao){
-            case "diagonal":
+        switch(direcao.charAt(0)){
+            case 'd':
                 //Sentido positivo em X e em Y
                 if(positivoX && positivoY){
 
@@ -96,7 +96,7 @@ public class Tabuleiro {
                         return true;
                 }
                 
-            case "vertical":
+            case 'v':
                 //Sentido positivo em Y
                 if(positivoY){
 
@@ -125,7 +125,7 @@ public class Tabuleiro {
                     else
                         return true;
                 }
-            case "horizontal":
+            case 'h':
                 //Sentido positivo em X
                 if(positivoX){
 
