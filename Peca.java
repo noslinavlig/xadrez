@@ -7,7 +7,7 @@
  * @author Alan Moraes &lt;alan@ci.ufpb.br&gt;
  * @author Leonardo Villeth &lt;lvilleth@cc.ci.ufpb.br&gt;
  */
-public class Peca {
+ public class Peca {
 
     //Inteiros identificadores das pecas
     //damas
@@ -29,8 +29,8 @@ public class Peca {
     public static final int REI_BRANCO = 8;
     public static final int REI_PRETO = -8;
     
-    private Casa casa;
-    private int tipo;
+    protected Casa casa;
+    protected int tipo;
 
     public Peca(Casa casa, int tipo) {
         this.casa = casa;
@@ -49,7 +49,7 @@ public class Peca {
     }
 
     //Retorna uma String com o nome da direção do movimento
-    private String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
+    protected String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
         if(Px == Qx)
             return "vertical";
         else if(Py == Qy)
@@ -61,7 +61,7 @@ public class Peca {
     }
 
     //Retorna o número de casas de um movimento
-    private int deslocamentoModulo(int Px, int Py, int Qx, int Qy){
+    protected int deslocamentoModulo(int Px, int Py, int Qx, int Qy){
         //Se for diagonal, contamos o numero de casas através de um único eixo
         if (Math.abs(Qx - Px) == Math.abs(Qy - Py))
             return Math.abs(Qx - Px);
@@ -75,33 +75,6 @@ public class Peca {
             String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
             int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
             switch(Math.abs(this.getTipo())){
-                case 3:
-                    Casa destino = tabuleiro.getCasa(Qx, Qy);
-                    boolean sentidopositivo = Py < Qy;                    
-                    if(this.getTipo() == -3){//Caso seja peao preto, essas serao as regras
-
-                        //Verificando se é primeira jogada
-                        if(Py == 6 && distancia <= 2 && direcao.equals("vertical"))
-                            return true;
-                        else //Movimento genérico do peão
-
-                        if(distancia == 1 && !sentidopositivo && ((direcao.equals("diagonal")) && destino.possuiPeca() 
-                                                                    || direcao.equals("vertical") && !destino.possuiPeca()) )
-                            return true;
-                        else 
-                            return false;
-
-                    } else //Regras para peoes brancos
-
-                        //Verificando se é primeira jogada
-                        if(Py == 1 && distancia <= 2 && direcao.equals("vertical")){
-                            return true;
-                        } else //Movimento genérico do peão
-                        if(distancia == 1 && sentidopositivo && ((direcao.equals("diagonal")) && destino.possuiPeca() 
-                                                                    || direcao.equals("vertical") && !destino.possuiPeca()) ){
-                            return true;
-                        }else
-                            return false;
                 
                 case 4:
                     if((direcao.equals("horizontal") || direcao.equals("vertical")) && tabuleiro.caminhoLivre(Px, Py, Qx, Qy, direcao))
@@ -134,7 +107,19 @@ public class Peca {
                     return false;
             }
            
-    }    
+    }
+    public String getCor(){
+        if (this.getTipo() < 0)
+            return "PRETO";
+        else   
+            return "BRANCO";
+    }
+
+
+    public boolean eBranco(){
+        return this.getCor().equals("BRANCO");
+    }
+
 
     /**
      * Valor    Tipo
@@ -148,3 +133,4 @@ public class Peca {
         return tipo;
     }
 }
+
