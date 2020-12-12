@@ -20,7 +20,6 @@ public class Rainha extends Peca {
         boolean condicaogeral = !destino.possuiPeca() || !this.getCor().equals(destino.getCor());
         boolean caminholivre = this.tabuleiro.caminhoLivre(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY(), direcao);
         
-        System.out.println(caminholivre);
         if( (direcao.equals("vertical") || direcao.equals("diagonal") || direcao.equals("horizontal")) && condicaogeral && caminholivre){
             casa.removerPeca();
             destino.colocarPeca(this);

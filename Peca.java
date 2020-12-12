@@ -7,7 +7,7 @@
  * @author Alan Moraes &lt;alan@ci.ufpb.br&gt;
  * @author Leonardo Villeth &lt;lvilleth@cc.ci.ufpb.br&gt;
  */
- public class Peca {
+ public abstract class Peca {
 
     //Inteiros identificadores das pecas
     //damas
@@ -46,9 +46,7 @@
      */
     
 
-    public boolean mover(Casa destino){
-        return true;
-    }
+    public abstract boolean mover(Casa destino);
 
     protected String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
         if(Px == Qx)
@@ -61,7 +59,6 @@
             return "outro";
     }
 
-    //Retorna o número de casas de um movimento
     protected int deslocamentoModulo(int Px, int Py, int Qx, int Qy){
         //Se for diagonal, contamos o numero de casas através de um único eixo
         if (Math.abs(Qx - Px) == Math.abs(Qy - Py))
@@ -71,14 +68,6 @@
             return Math.abs(Qx - Px) + Math.abs(Qy - Py);
     }
     
-    /**
-     * Valor    Tipo
-     *   0   Branca (Pedra)
-     *   1   Branca (Dama)
-     *   2   Vermelha (Pedra)
-     *   3   Vermelha (Dama)
-     * @return o tipo da peca.
-     */
     public int getTipo() {
         return tipo;
     }

@@ -13,14 +13,15 @@ public class Cavalo extends Peca{
     {
         super(casa, tipo, tabuleiro);
     }
-  
+    
     @Override
     public boolean mover(Casa destino){
 
         boolean condicaogeral = !destino.possuiPeca() || !this.getCor().equals(destino.getCor());         
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
+        boolean galope = this.casa.getX() != destino.getX() && this.casa.getY() != destino.getY();
         
-        if(distancia == 3 && this.casa.getX() != destino.getX() && this.casa.getY() != destino.getY() && condicaogeral){
+        if(distancia == 3 && condicaogeral && galope){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
