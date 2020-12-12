@@ -20,8 +20,8 @@ public class Peao extends Peca {
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
         boolean sentidopositivo = this.casa.getY() < destino.getY();
 
-        boolean restricaopreto = distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("BRANCO")));
-        boolean restricaobranco = distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("PRETO")));
+        boolean restricaopreto = (distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("BRANCO"))));
+        boolean restricaobranco = (distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("PRETO"))));
 
         if(this.getCor().equals("PRETO")){//Caso seja peao preto, essas serao as regras
             //Verificando se é primeira jogada
