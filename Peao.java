@@ -34,7 +34,7 @@ public class Peao extends Peca {
                 casa = destino;
                 return true;
             } else //Movimento genérico do peão
-            if(distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && !this.getCor().equals(cordestino))) ){
+            if(distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && !this.getCor().equals(cordestino) && destino.possuiPeca())) ){
                 casa.removerPeca();
                 destino.colocarPeca(this);
                 casa = destino;
@@ -52,7 +52,7 @@ public class Peao extends Peca {
             return true;
         } else //Movimento genérico do peão
         
-        if(distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.possuiPeca() && !this.getCor().equals(cordestino))) ){
+        if(distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.possuiPeca() && !this.getCor().equals(cordestino) && destino.possuiPeca())) ){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
