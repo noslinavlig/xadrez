@@ -29,31 +29,31 @@ public class Jogo {
                 switch(j){
                     case 0:
                     case 7:
-                        switch(i){/*
+                        switch(i){
                             case 0: case 7:
                                 casa = tabuleiro.getCasa(i, j);
                                 Torre torre;
                                 if(j == 0)
-                                    torre = new Torre(casa, Peca.TORRE_BRANCA);
+                                    torre = new Torre(casa, Peca.TORRE_BRANCA, this.tabuleiro);
                                 else
-                                    torre = new Torre(casa, Peca.TORRE_PRETA); 
+                                    torre = new Torre(casa, Peca.TORRE_PRETA, this.tabuleiro); 
                             break;
                             case 1: case 6:
                                 casa = tabuleiro.getCasa(i, j);
                                 Cavalo cavalo;
                                 if(j == 0)
-                                    cavalo = new Cavalo(casa, Peca.CAVALO_BRANCO);
+                                    cavalo = new Cavalo(casa, Peca.CAVALO_BRANCO, this.tabuleiro);
                                 else
-                                    cavalo = new Cavalo(casa, Peca.CAVALO_PRETO);
+                                    cavalo = new Cavalo(casa, Peca.CAVALO_PRETO, this.tabuleiro);
                             break;
                             case 2: case 5:
                                 casa = tabuleiro.getCasa(i, j);
                                 Bispo bispo;
                                 if(j == 0)
-                                    bispo = new Bispo(casa, Peca.BISPO_BRANCO);
+                                    bispo = new Bispo(casa, Peca.BISPO_BRANCO, this.tabuleiro);
                                 else
-                                    bispo = new Bispo(casa, Peca.BISPO_PRETO);
-                            break;*/
+                                    bispo = new Bispo(casa, Peca.BISPO_PRETO, this.tabuleiro);
+                            break;
                             case 3:
                                 casa = tabuleiro.getCasa(i, j);
                                 Rainha rainha;
