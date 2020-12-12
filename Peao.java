@@ -9,12 +9,12 @@ public class Peao extends Peca {
     /**
      * COnstrutor para objetos da classe Peao
      */
-    public Peao(Casa casa, int tipo){
-        super(casa, tipo);
+    public Peao(Casa casa, int tipo, Tabuleiro tabuleiro){
+        super(casa, tipo, tabuleiro);
     }
 
     @Override
-    public boolean mover(Casa destino, Tabuleiro tabuleiro){
+    public boolean mover(Casa destino){
         
         String direcao = this.deslocamentoDirecao(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());

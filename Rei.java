@@ -9,12 +9,12 @@ public class Rei extends Peca {
     /**
      * COnstrutor para objetos da classe Peao
      */
-    public Rei(Casa casa, int tipo){
-        super(casa, tipo);
+    public Rei(Casa casa, int tipo, Tabuleiro tabuleiro){
+        super(casa, tipo, tabuleiro);
     }
 
     @Override
-    public boolean mover(Casa destino, Tabuleiro tabuleiro){
+    public boolean mover(Casa destino){
 
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
 

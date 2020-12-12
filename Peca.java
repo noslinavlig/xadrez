@@ -31,8 +31,10 @@
     
     protected Casa casa;
     protected int tipo;
+    protected Tabuleiro tabuleiro;
 
-    public Peca(Casa casa, int tipo) {
+    public Peca(Casa casa, int tipo, Tabuleiro tabuleiro) {
+        this.tabuleiro= tabuleiro;
         this.casa = casa;
         this.tipo = tipo;
         casa.colocarPeca(this);
@@ -44,7 +46,7 @@
      */
     
 
-    public boolean mover(Casa destino, Tabuleiro tabuleiro){
+    public boolean mover(Casa destino){
         return true;
     }
 

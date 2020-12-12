@@ -57,17 +57,17 @@ public class Jogo {
                                 casa = tabuleiro.getCasa(i, j);
                                 Rainha rainha;
                                 if(j == 0)
-                                    rainha = new Rainha(casa, Peca.RAINHA_BRANCA);
+                                    rainha = new Rainha(casa, Peca.RAINHA_BRANCA, this.tabuleiro);
                                 else
-                                    rainha = new Rainha(casa, Peca.RAINHA_PRETA);
+                                    rainha = new Rainha(casa, Peca.RAINHA_PRETA, this.tabuleiro);
                             break;
                             case 4:
                                 casa = tabuleiro.getCasa(i, j);
                                 Rei rei;
                                 if(j == 0)
-                                    rei = new Rei(casa, Peca.REI_BRANCO);
+                                    rei = new Rei(casa, Peca.REI_BRANCO, this.tabuleiro);
                                 else
-                                    rei = new Rei(casa, Peca.REI_PRETO);
+                                    rei = new Rei(casa, Peca.REI_PRETO, this.tabuleiro);
                             break;
 
                         }
@@ -75,11 +75,11 @@ public class Jogo {
                     case 1:
                         Peao peao;
                         casa = tabuleiro.getCasa(i, j);
-                        peao = new Peao(casa, Peca.PEAO_BRANCO);
+                        peao = new Peao(casa, Peca.PEAO_BRANCO, this.tabuleiro);
                         break;
                     case 6:
                         casa = tabuleiro.getCasa(i, j);
-                        peao = new Peao(casa, Peca.PEAO_PRETO);
+                        peao = new Peao(casa, Peca.PEAO_PRETO, this.tabuleiro);
                         break;
                     default:
                         break;
@@ -107,11 +107,11 @@ public class Jogo {
         Casa destino = tabuleiro.getCasa(Q.getPosicaoX(), Q.getPosicaoY());
         Peca peca = origem.getPeca();
         
-        if (this.jogada %2 ==0 && peca.getCor().equals("BRANCO") && peca.mover(destino, this.tabuleiro)){
+        if (this.jogada %2 ==0 && peca.getCor().equals("BRANCO") && peca.mover(destino)){
                 this.jogada++;
         
         //Testa se a rodada é das pretas e se a peça é preta
-        } else if (this.jogada %2 !=0 && peca.getCor().equals("PRETO") && peca.mover(destino, this.tabuleiro)){
+        } else if (this.jogada %2 !=0 && peca.getCor().equals("PRETO") && peca.mover(destino)){
                 this.jogada++;
         }
     
