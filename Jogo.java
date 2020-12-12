@@ -27,7 +27,8 @@ public class Jogo {
         for (i = 0; i < 8; i++){
             for(j = 0; j < 8; j++){
                 switch(j){
-                    case 0, 7:
+                    case 0:
+                    case 7:
                         switch(i){/*
                             case 0: case 7:
                                 casa = tabuleiro.getCasa(i, j);
