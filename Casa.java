@@ -53,5 +53,12 @@ public class Casa {
     public int getY(){
         return this.y;
     }
+
+    public String getCor(){
+        if (this.possuiPeca())
+            return this.getPeca().getCor();
+        else
+            return "Sem peça";
+    }
     
 }

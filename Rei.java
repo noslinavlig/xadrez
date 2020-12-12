@@ -18,13 +18,9 @@ public class Rei extends Peca {
 
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
 
-        String cordestino;
-        if (destino.possuiPeca())
-            cordestino = destino.getPeca().getCor();
-        else
-            cordestino = null;
+        boolean cordiferente = !this.getCor().equals(destino.getCor());
 
-        if(distancia == 1 && (!destino.possuiPeca() || !this.getCor().equals(cordestino)) ){
+        if(distancia == 1 && (!destino.possuiPeca() || cordiferente) ){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;

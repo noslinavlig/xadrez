@@ -19,22 +19,19 @@ public class Peao extends Peca {
         String direcao = this.deslocamentoDirecao(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
         boolean sentidopositivo = this.casa.getY() < destino.getY();
-        
-        String cordestino;
-        if (destino.possuiPeca())
-            cordestino = destino.getPeca().getCor();
-        else
-            cordestino = null;
+
+        boolean restricaopreto = distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("BRANCO")));
+        boolean restricaobranco = distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("PRETO")));
 
         if(this.getCor().equals("PRETO")){//Caso seja peao preto, essas serao as regras
             //Verificando se é primeira jogada
-            if(this.casa.getY() == 6 && distancia <= 2 && !sentidopositivo && direcao.equals("vertical")){
+            if(this.casa.getY() == 6 && distancia <= 2 && !sentidopositivo && direcao.equals("vertical") || restricaopreto){
                 casa.removerPeca();
                 destino.colocarPeca(this);
                 casa = destino;
                 return true;
             } else //Movimento genérico do peão
-            if(distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && !this.getCor().equals(cordestino) && destino.possuiPeca())) ){
+            if(restricaopreto){
                 casa.removerPeca();
                 destino.colocarPeca(this);
                 casa = destino;
@@ -45,14 +42,14 @@ public class Peao extends Peca {
 
         } else //Regras para peoes brancos
         //Verificando se é primeira jogada
-        if(this.casa.getY() == 1 && distancia <= 2 && sentidopositivo && direcao.equals("vertical")){
+        if(this.casa.getY() == 1 && distancia <= 2 && sentidopositivo && direcao.equals("vertical") || restricaobranco){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
             return true;
         } else //Movimento genérico do peão
         
-        if(distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.possuiPeca() && !this.getCor().equals(cordestino) && destino.possuiPeca())) ){
+        if(restricaobranco){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
