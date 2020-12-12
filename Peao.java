@@ -20,7 +20,7 @@ public class Peao extends Peca {
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
         boolean sentidopositivo = this.casa.getY() < destino.getY();
         boolean caminholivre = this.tabuleiro.caminhoLivre(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY(), direcao);
-
+        
         boolean restricaopreto = (distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("BRANCO"))));
         boolean restricaobranco = (distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.getCor().equals("PRETO"))));
 
