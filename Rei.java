@@ -14,7 +14,7 @@ public class Rei extends Peca {
     }
 
     @Override
-    public boolean mover(Casa destino){
+    public boolean mover(Casa destino, Tabuleiro tabuleiro){
 
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
 

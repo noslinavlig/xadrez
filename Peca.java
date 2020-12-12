@@ -7,7 +7,7 @@
  * @author Alan Moraes &lt;alan@ci.ufpb.br&gt;
  * @author Leonardo Villeth &lt;lvilleth@cc.ci.ufpb.br&gt;
  */
- public abstract class Peca {
+ public class Peca {
 
     //Inteiros identificadores das pecas
     //damas
@@ -42,7 +42,11 @@
      * Movimenta a peca para uma nova casa.
      * @param destino nova casa que ira conter esta peca.
      */
-    public abstract boolean mover(Casa destino);
+    
+
+    public boolean mover(Casa destino, Tabuleiro tabuleiro){
+        return true;
+    }
 
     protected String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
         if(Px == Qx)

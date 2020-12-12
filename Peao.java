@@ -14,7 +14,7 @@ public class Peao extends Peca {
     }
 
     @Override
-    public boolean mover(Casa destino){
+    public boolean mover(Casa destino, Tabuleiro tabuleiro){
         
         String direcao = this.deslocamentoDirecao(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
         int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());

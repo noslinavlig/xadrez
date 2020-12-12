@@ -52,7 +52,7 @@ public class Jogo {
                                     bispo = new Bispo(casa, Peca.BISPO_BRANCO);
                                 else
                                     bispo = new Bispo(casa, Peca.BISPO_PRETO);
-                            break;
+                            break;*/
                             case 3:
                                 casa = tabuleiro.getCasa(i, j);
                                 Rainha rainha;
@@ -60,7 +60,7 @@ public class Jogo {
                                     rainha = new Rainha(casa, Peca.RAINHA_BRANCA);
                                 else
                                     rainha = new Rainha(casa, Peca.RAINHA_PRETA);
-                            break;*/
+                            break;
                             case 4:
                                 casa = tabuleiro.getCasa(i, j);
                                 Rei rei;
@@ -107,11 +107,11 @@ public class Jogo {
         Casa destino = tabuleiro.getCasa(Q.getPosicaoX(), Q.getPosicaoY());
         Peca peca = origem.getPeca();
         
-        if (this.jogada %2 ==0 && peca.getCor().equals("BRANCO") && peca.mover(destino)){
+        if (this.jogada %2 ==0 && peca.getCor().equals("BRANCO") && peca.mover(destino, this.tabuleiro)){
                 this.jogada++;
         
         //Testa se a rodada é das pretas e se a peça é preta
-        } else if (this.jogada %2 !=0 && peca.getCor().equals("PRETO") && peca.mover(destino)){
+        } else if (this.jogada %2 !=0 && peca.getCor().equals("PRETO") && peca.mover(destino, this.tabuleiro)){
                 this.jogada++;
         }
     
