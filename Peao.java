@@ -25,7 +25,7 @@ public class Peao extends Peca {
 
         if(this.getCor().equals("PRETO")){//Caso seja peao preto, essas serao as regras
             //Verificando se é primeira jogada
-            if(this.casa.getY() == 6 && distancia <= 2 && !sentidopositivo && direcao.equals("vertical") || restricaopreto){
+            if(this.casa.getY() == 6 && distancia <= 2 && !sentidopositivo && direcao.equals("vertical") && !destino.possuiPeca() || restricaopreto){
                 casa.removerPeca();
                 destino.colocarPeca(this);
                 casa = destino;
@@ -42,7 +42,7 @@ public class Peao extends Peca {
 
         } else //Regras para peoes brancos
         //Verificando se é primeira jogada
-        if(this.casa.getY() == 1 && distancia <= 2 && sentidopositivo && direcao.equals("vertical") || restricaobranco){
+        if(this.casa.getY() == 1 && distancia <= 2 && sentidopositivo && direcao.equals("vertical") && !destino.possuiPeca() || restricaobranco){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
