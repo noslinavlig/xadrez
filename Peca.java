@@ -7,7 +7,7 @@
  * @author Alan Moraes &lt;alan@ci.ufpb.br&gt;
  * @author Leonardo Villeth &lt;lvilleth@cc.ci.ufpb.br&gt;
  */
- public class Peca {
+ public abstract class Peca {
 
     //Inteiros identificadores das pecas
     //damas
@@ -42,13 +42,8 @@
      * Movimenta a peca para uma nova casa.
      * @param destino nova casa que ira conter esta peca.
      */
-    public void mover(Casa destino) {
-        casa.removerPeca();
-        destino.colocarPeca(this);
-        casa = destino;
-    }
+    public abstract boolean mover(Casa destino);
 
-    //Retorna uma String com o nome da direção do movimento
     protected String deslocamentoDirecao(int Px, int Py, int Qx, int Qy){
         if(Px == Qx)
             return "vertical";
@@ -69,58 +64,7 @@
         else
             return Math.abs(Qx - Px) + Math.abs(Qy - Py);
     }
-
-    //METODO NOVO TESTA MOVIMENTAÇÃO INDICADA
-        public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){
-            String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
-            int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
-            switch(Math.abs(this.getTipo())){
-                
-                case 4:
-                    if((direcao.equals("horizontal") || direcao.equals("vertical")) && tabuleiro.caminhoLivre(Px, Py, Qx, Qy, direcao))
-                        return true;
-                    else 
-                        return false;
-                case 5:
-                    if(distancia == 3 && Px != Qx && Py != Qy)
-                        return true;
-                    else 
-                        return false;
-                case 6:
-                    if(direcao.equals("diagonal") && tabuleiro.caminhoLivre(Px, Py, Qx, Qy, direcao))
-                        return true;
-                    else
-                        return false;
-                        
-                case 7:
-                    if((direcao.equals("horizontal") || direcao.equals("diagonal") || direcao.equals("vertical"))
-                        &&tabuleiro.caminhoLivre(Px, Py, Qx, Qy, direcao))
-                        return true;
-                    else 
-                        return false;
-                case 8:
-                    if(distancia == 1)
-                        return true;
-                    else 
-                        return false;
-                default: 
-                    return false;
-            }
-           
-    }
-    public String getCor(){
-        if (this.getTipo() < 0)
-            return "PRETO";
-        else   
-            return "BRANCO";
-    }
-
-
-    public boolean eBranco(){
-        return this.getCor().equals("BRANCO");
-    }
-
-
+    
     /**
      * Valor    Tipo
      *   0   Branca (Pedra)
@@ -132,5 +76,13 @@
     public int getTipo() {
         return tipo;
     }
+
+    public String getCor(){
+        if (this.getTipo() < 0)
+            return "PRETO";
+        else   
+            return "BRANCO";
+    }
+    
 }
 

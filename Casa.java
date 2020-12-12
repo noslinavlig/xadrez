@@ -45,4 +45,13 @@ public class Casa {
     public boolean possuiPeca() {
         return peca != null;
     }
+
+    public int getX(){
+        return this.x;
+    }
+    
+    public int getY(){
+        return this.y;
+    }
+    
 }

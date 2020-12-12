@@ -1,46 +1,67 @@
-public class Peao extends Peca{
+/**
+ * Escreva a descrição da classe Peao aqui.
+ * 
+ * @author (seu nome) 
+ * @version (número de versão ou data)
+ */
+public class Peao extends Peca {
 
-public Peao(Casa casa, int tipo){
-   super(casa, tipo);
- 
-}
+    /**
+     * COnstrutor para objetos da classe Peao
+     */
+    public Peao(Casa casa, int tipo){
+        super(casa, tipo);
+    }
 
-@Override
-public boolean movimentoPermitido(int Px, int Py, int Qx, int Qy, Tabuleiro tabuleiro){
-    String direcao = this.deslocamentoDirecao(Px, Py, Qx, Qy);
-    int distancia = this.deslocamentoModulo(Px, Py, Qx, Qy);
-           
-              
-        Casa destino = tabuleiro.getCasa(Qx, Qy);
-        boolean sentidopositivo = Py < Qy;                    
-            if(this.getTipo() == -3){//Caso seja peao preto, essas serao as regras
+    @Override
+    public boolean mover(Casa destino){
+        
+        String direcao = this.deslocamentoDirecao(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
+        int distancia = this.deslocamentoModulo(this.casa.getX(), this.casa.getY(), destino.getX(), destino.getY());
+        boolean sentidopositivo = this.casa.getY() < destino.getY();
+        
+        String cordestino;
+        if (destino.possuiPeca())
+            cordestino = destino.getPeca().getCor();
+        else
+            cordestino = null;
 
-                        //Verificando se é primeira jogada
-                        if(Py == 6 && distancia <= 2 && !sentidopositivo && direcao.equals("vertical"))
-                            return true;
-                        else //Movimento genérico do peão
+        if(this.getCor().equals("PRETO")){//Caso seja peao preto, essas serao as regras
+            //Verificando se é primeira jogada
+            if(this.casa.getY() == 6 && distancia <= 2 && !sentidopositivo && direcao.equals("vertical")){
+                casa.removerPeca();
+                destino.colocarPeca(this);
+                casa = destino;
+                return true;
+            } else //Movimento genérico do peão
+            if(distancia == 1 && !sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && !this.getCor().equals(cordestino))) ){
+                casa.removerPeca();
+                destino.colocarPeca(this);
+                casa = destino;
+                return true;
+            } else {
+                return false;
+            }
 
-                        if(distancia == 1 && !sentidopositivo && ((direcao.equals("diagonal")) && destino.possuiPeca() 
-                                                                    || direcao.equals("vertical") && !destino.possuiPeca()) )
-                            return true;
-                        else 
-                            return false;
+        } else //Regras para peoes brancos
+        //Verificando se é primeira jogada
+        if(this.casa.getY() == 1 && distancia <= 2 && sentidopositivo && direcao.equals("vertical")){
+            casa.removerPeca();
+            destino.colocarPeca(this);
+            casa = destino;
+            return true;
+        } else //Movimento genérico do peão
+        
+        if(distancia == 1 && sentidopositivo && (direcao.equals("vertical") && !destino.possuiPeca() || (direcao.equals("diagonal") && destino.possuiPeca() && !this.getCor().equals(cordestino))) ){
+            casa.removerPeca();
+            destino.colocarPeca(this);
+            casa = destino;
+            return true;
+        } else {
+            return false;
+        }
+            
 
-                    } else //Regras para peoes brancos
-
-                        //Verificando se é primeira jogada
-                        if(Py == 1 && distancia <= 2 && sentidopositivo && direcao.equals("vertical")){
-                            return true;
-                        } else //Movimento genérico do peão
-                        if(distancia == 1 && sentidopositivo && ((direcao.equals("diagonal")) && destino.possuiPeca() 
-                                                                    || direcao.equals("vertical") && !destino.possuiPeca()) ){
-                            return true;
-                        }else
-                            return false;
-}
-
-
- 
-
-
+    }
+    
 }
