@@ -45,4 +45,20 @@ public class Casa {
     public boolean possuiPeca() {
         return peca != null;
     }
+
+    public int getX(){
+        return this.x;
+    }
+    
+    public int getY(){
+        return this.y;
+    }
+
+    public String getCor(){
+        if (this.possuiPeca())
+            return this.getPeca().getCor();
+        else
+            return "Sem peça";
+    }
+    
 }

@@ -21,12 +21,9 @@ public class Jogo {
      * Utilizado na inicializa�ao do jogo.
      */
     private void criarPecas() {
-
-        int i = 0;
-        int j = 0;
-        Casa casa;
-        Peca peca;
         
+        int i, j;
+        Casa casa;
         for (i = 0; i < 8; i++){
             for(j = 0; j < 8; j++){
                 switch(j){
@@ -35,56 +32,64 @@ public class Jogo {
                         switch(i){
                             case 0: case 7:
                                 casa = tabuleiro.getCasa(i, j);
+                                Torre torre;
                                 if(j == 0)
-                                    peca = new Peca(casa, Peca.TORRE_BRANCA);
+                                    torre = new Torre(casa, Peca.TORRE_BRANCA, this.tabuleiro);
                                 else
-                                    peca = new Peca(casa, Peca.TORRE_PRETA); 
+                                    torre = new Torre(casa, Peca.TORRE_PRETA, this.tabuleiro); 
                             break;
                             case 1: case 6:
                                 casa = tabuleiro.getCasa(i, j);
+                                Cavalo cavalo;
                                 if(j == 0)
-                                    peca = new Peca(casa, Peca.CAVALO_BRANCO);
+                                    cavalo = new Cavalo(casa, Peca.CAVALO_BRANCO, this.tabuleiro);
                                 else
-                                    peca = new Peca(casa, Peca.CAVALO_PRETO);
+                                    cavalo = new Cavalo(casa, Peca.CAVALO_PRETO, this.tabuleiro);
                             break;
                             case 2: case 5:
                                 casa = tabuleiro.getCasa(i, j);
+                                Bispo bispo;
                                 if(j == 0)
-                                    peca = new Peca(casa, Peca.BISPO_BRANCO);
+                                    bispo = new Bispo(casa, Peca.BISPO_BRANCO, this.tabuleiro);
                                 else
-                                    peca = new Peca(casa, Peca.BISPO_PRETO);
+                                    bispo = new Bispo(casa, Peca.BISPO_PRETO, this.tabuleiro);
                             break;
                             case 3:
                                 casa = tabuleiro.getCasa(i, j);
+                                Rainha rainha;
                                 if(j == 0)
-                                    peca = new Peca(casa, Peca.RAINHA_BRANCA);
+                                    rainha = new Rainha(casa, Peca.RAINHA_BRANCA, this.tabuleiro);
                                 else
-                                    peca = new Peca(casa, Peca.RAINHA_PRETA);
+                                    rainha = new Rainha(casa, Peca.RAINHA_PRETA, this.tabuleiro);
                             break;
                             case 4:
                                 casa = tabuleiro.getCasa(i, j);
+                                Rei rei;
                                 if(j == 0)
-                                    peca = new Peca(casa, Peca.REI_BRANCO);
+                                    rei = new Rei(casa, Peca.REI_BRANCO, this.tabuleiro);
                                 else
-                                    peca = new Peca(casa, Peca.REI_PRETO);
+                                    rei = new Rei(casa, Peca.REI_PRETO, this.tabuleiro);
                             break;
 
                         }
                         break;
                     case 1:
+                        Peao peao;
                         casa = tabuleiro.getCasa(i, j);
-                        peca = new Peca(casa, Peca.PEAO_BRANCO);
+                        peao = new Peao(casa, Peca.PEAO_BRANCO, this.tabuleiro);
                         break;
                     case 6:
                         casa = tabuleiro.getCasa(i, j);
-                        peca = new Peca(casa, Peca.PEAO_PRETO);
+                        peao = new Peao(casa, Peca.PEAO_PRETO, this.tabuleiro);
                         break;
                     default:
                         break;
                 }
             }
-        }
-    }   
+        }    
+        
+    
+    }
     
     /**
      * Comanda uma Pe�a na posicao (x.getPosicaoX(), x.getPosicaoY()) fazer um movimento 
@@ -103,29 +108,15 @@ public class Jogo {
         Casa destino = tabuleiro.getCasa(Q.getPosicaoX(), Q.getPosicaoY());
         Peca peca = origem.getPeca();
         
-        if (this.jogada %2 ==0 && peca.getTipo() > 0){
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro)
-                && (!destino.possuiPeca() || destino.getPeca().getTipo() < 0)){
-        
-                peca.mover(destino);
+        if (this.jogada %2 ==0 && peca.getCor().equals("BRANCO") && peca.mover(destino)){
                 this.jogada++;
-                System.out.println("VEZ DAS PRETAS");
-
-            }
         
         //Testa se a rodada é das pretas e se a peça é preta
-        } else if (this.jogada %2 != 0 && peca.getTipo() < 0){
-            if(peca.movimentoPermitido(P.getPosicaoX(), P.getPosicaoY(), Q.getPosicaoX(), Q.getPosicaoY(), this.tabuleiro)
-                && (!destino.possuiPeca() || destino.getPeca().getTipo() > 0)){
-                
-                peca.mover(destino);
+        } else if (this.jogada %2 !=0 && peca.getCor().equals("PRETO") && peca.mover(destino)){
                 this.jogada++;
-                System.out.println("VEZ DAS BRANCAS");
-
-            }
         }
-    }    
     
+    }
     /**
      * @return o Tabuleiro em jogo.
      */
